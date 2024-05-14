@@ -1,5 +1,5 @@
-use std::process::{Command, exit};
 use std::io;
+use std::process::{exit, Command};
 
 pub fn get_gpu() -> io::Result<String> {
     // Run the lspci command and capture its output
@@ -12,7 +12,9 @@ pub fn get_gpu() -> io::Result<String> {
             let output_str = String::from_utf8_lossy(&output.stdout);
 
             // Search for GPU-related information in the lspci output
-            if let Some(line) = output_str.lines().find(|line| line.to_lowercase().contains("vga") || line.to_lowercase().contains("3d")) {
+            if let Some(line) = output_str.lines().find(|line| {
+                line.to_lowercase().contains("vga") || line.to_lowercase().contains("3d")
+            }) {
                 // Extract the GPU model information
                 let gpu_model = line.split(':').nth(2).map(|s| s.trim());
 

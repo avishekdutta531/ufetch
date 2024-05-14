@@ -1,5 +1,5 @@
-use std::process::{Command, exit};
 use std::io;
+use std::process::{exit, Command};
 
 pub fn get_uptime() -> io::Result<String> {
     // Run the uptime -p command and capture its output
