@@ -11,7 +11,7 @@ pub fn get_kernel() -> io::Result<String> {
             if output.status.success() {
                 // Convert the output to a string
                 let kernel_version = String::from_utf8_lossy(&output.stdout).trim().to_string();
-                return Ok(kernel_version);
+                Ok(kernel_version)
             } else {
                 // Print the error code and exit the program
                 eprintln!("Command failed with error code: {}", output.status);
