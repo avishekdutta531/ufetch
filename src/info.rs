@@ -2,10 +2,16 @@
 mod cpu;
 #[path = "modules/de.rs"]
 mod de;
+#[path = "modules/disk.rs"]
+mod disk;
+#[path = "modules/gpu.rs"]
+mod gpu;
 #[path = "modules/host.rs"]
 mod host;
 #[path = "modules/kernel.rs"]
 mod kernel;
+#[path = "modules/machine.rs"]
+mod machine;
 #[path = "modules/mem.rs"]
 mod mem;
 #[path = "modules/os.rs"]
@@ -20,12 +26,6 @@ mod sh;
 mod up;
 #[path = "modules/user.rs"]
 mod user;
-#[path = "modules/disk.rs"]
-mod disk;
-#[path = "modules/gpu.rs"]
-mod gpu;
-#[path = "modules/machine.rs"]
-mod machine;
 
 pub fn info() {
     match (user::get_user(), host::get_host()) {
@@ -43,7 +43,7 @@ pub fn info() {
     if let Ok(kernel) = kernel::get_kernel() {
         println!("Kernel    : {}", kernel);
     }
-    
+
     if let Ok(machine) = machine::get_machine() {
         println!("Host      : {}", machine);
     }

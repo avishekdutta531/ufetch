@@ -7,5 +7,5 @@ pub fn get_machine() -> io::Result<String> {
     let name = read_to_string(Path::new("/sys/devices/virtual/dmi/id/product_name"))?;
     let version = read_to_string(Path::new("/sys/devices/virtual/dmi/id/product_version"))?;
 
-    Ok(format!("{} {}", name.trim().to_string(), version.trim().to_string()))
+    Ok(format!("{} {}", name.trim(), version.trim()))
 }

@@ -10,14 +10,12 @@ pub fn get_mem() -> io::Result<String> {
     let mut mem_free: u64 = 0;
 
     // Read the file line by line
-    for line in io::BufReader::new(file).lines() {
-        if let Ok(line) = line {
-            // Extract MemTotal and MemFree values
-            if line.starts_with("MemTotal:") {
-                mem_total = parse_memory_value(&line);
-            } else if line.starts_with("MemFree:") {
-                mem_free = parse_memory_value(&line);
-            }
+    for line in io::BufReader::new(file).lines().flatten() {
+        // Extract MemTotal and MemFree values
+        if line.starts_with("MemTotal:") {
+            mem_total = parse_memory_value(&line);
+        } else if line.starts_with("MemFree:") {
+            mem_free = parse_memory_value(&line);
         }
     }
 
